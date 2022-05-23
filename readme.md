@@ -88,3 +88,6 @@ psql -h localhost -U gary  -W -d garment_app
 Create the garment table in the new database using the `\i sql/garment.sql` command in `psql`.
 
 When you run the test using `npm test` the unit test will populate the `garment` table accordingly.
+
+Travis Test
+[![Build Status](https://app.travis-ci.com/Cekiso/my-api-with-psql-workshop.svg?branch=master)](https://app.travis-ci.com/Cekiso/my-api-with-psql-workshop)
