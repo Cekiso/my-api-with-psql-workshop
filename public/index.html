@@ -13,7 +13,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="style" href="stylesheet.css">
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
@@ -48,7 +48,8 @@
 <body>
     <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script> -->
 
-    <div>
+
+    <div x-data="clothing">
 
         <div class="container">
             <h1>Missy Tee - clothing store</h1>
@@ -71,39 +72,39 @@
                 <h2>Filter</h2>
                 <div class="genders">
                     <label>
-                        <input type="radio" name="gender" value="All"> All
+                        <input type="radio" x-model="genderFilter" @change="filterData()"  name="gender" value=""> All
                     </label>
 
                     <label>
-                        <input type="radio" name="gender" value="Male"> Male
+                        <input type="radio" x-model="genderFilter" @change="filterData()"  name="gender" value="Male"> Male
                     </label>
 
                     <label>
-                        <input type="radio" name="gender" value="Female"> Female
+                        <input type="radio" x-model="genderFilter" @change="filterData()"  name="gender" value="Female"> Female
                     </label>
                     <label>
-                        <input type="radio" name="gender" value="Unisex"> Unisex
+                        <input type="radio" x-model="genderFilter" @change="filterData()"  name="gender" value="Unisex"> Unisex
                     </label>
                 </div>
                 <div class="seasons">
 
                     <label>
-                        <input type="radio" name="season" value="All"> All
+                        <input type="radio" x-model="seasonFilter" @change="filterData()"  name="season" value=""> All
                     </label>
                     <label>
-                        <input type="radio" name="season" value="Summer"> Summer
+                        <input type="radio" x-model="seasonFilter" @change="filterData()"  name="season" value="Summer"> Summer
                     </label>
                     <label>
-                        <input type="radio" name="season" value="Winter"> Winter
+                        <input type="radio" x-model="seasonFilter" @change="filterData()"  name="season" value="Winter"> Winter
                     </label>
                     <label>
-                        <input type="radio" name="season" value="All Seasons"> All seasons
+                        <input type="radio" x-model="seasonFilter" @change="filterData()"  name="season" value="All Seasons"> All seasons
                     </label>
                 </div>
                 <div>
                     Filter by price range:
-                    <input type="range" nahereme="priceRange" max="1000" step="50" class="priceRange" value="0"> R
-                    <span class="showPriceRange">0</span>.00
+                    <input type="range" x-model="maxPrice" @change="filterRange()" name="priceRange" max="1000" step="50" class="priceRange" value="0"> R
+                    <span class="showPriceRange" x-text="maxPrice">0</span>.00
                 </div>
             </div>
 
@@ -114,18 +115,18 @@
             <div class="addGarment">
 
                 <div class="add button mt1 hidden">
-                    <a href="">Add garmet</a>
+                    <a x-bind="trigger" x-on:click="addGarment = ! addGarment" @change="addClothing" x-model="addGarment" href="">Add garmet</a>
                 </div>
 
-                <div class="add garment hidden">
+                <div x-show="addGarment" x-bind="addGarments" @change="addClothing" x-model="addGarment" class="add garment hidden">
                     <h2>Add garment</h2>
                     <img src="/images/img" alt="">
 
-                    <!-- <form action="/garment/" method="post" class="addGarmentForm" > -->
+                    <!-- <form action="/garment/" method="post" class="addGarmentForm"> -->
 
                     <div class="field">
                         <label for="">Description</label>
-                        <input type=" text " name="description" class="description ">
+                        <input type="text" name="description" class="description ">
                     </div>
                     <div class="field ">
                         <label for=" ">Image</label>
@@ -141,8 +142,8 @@
                             <input type="text " name="gender" class="gender">
                         </div>
                     </div>
-                    <div class="field ">
-                        <label for=" ">Season</label>
+                    <div class="field">
+                        <label for="">Season</label>
                         <div>
                             <input type="text " name="season" class="season">
                         </div>
@@ -158,22 +159,26 @@
 
             <div>
                 <h2>Garments</h2>
-                <h2>Call API on page load</h2>
-
-
-                <div class="searchResults">
-                    <div x-data="{garments:[]}" x-init="fetch('api/garments')
-                    .then(r => r.json())
-                    .then(garmentsData => garments = garmentsData),console.log('checking garments'+JSON.stringify(garments))">
-
-                        <template x-for="garment in garments.data">
-                                <img x-bind:src="`/images/${garment.img}`">
-                                <p x-text="garment.description"></p>
-                                <p><span x-text="garment.price"></span></p>
-                            </template>
-
-                    </div>
+                <!-- <h2>Call API on page load</h2> -->
+                <div x-text="garments.length">
+                    <strong>garments found</strong>
                 </div>
+                <div class="garments">
+
+
+                    <template x-for="garment in garments">
+                        
+                            <div class="garment">
+
+                                <img x-bind:src="`/images/${garment.img}`">
+                                    <p x-text="garment.description"></p>
+                                <p>R<span x-text="garment.price"></span></p>
+
+                            </div> 
+                        </template>
+
+                </div>
+
 
             </div>
         </div>
@@ -182,11 +187,9 @@
 
         </div>
     </div>
-    <script src="api.js"></script>
 
-    <!-- <script src="app.js"></script>
-    <script src="field-manager.js"></script>
-    <script src="add-garment.js"></script> -->
+
+    <script src="missytee.js"></script>
 </body>
 
 </html>
