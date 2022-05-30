@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 const config = {
-    connectionString: process.env.DATABASE_URL || 'postgres://your_username:your_password@localhost:5432/your_db_name',
+    connectionString: process.env.DATABASE_URL || 'postgres://nkully:nkully@localhost:5432/garment_app',
     max: 30,
     ssl: { rejectUnauthorized: false }
 };
