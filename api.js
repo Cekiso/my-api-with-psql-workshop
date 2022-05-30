@@ -137,24 +137,24 @@ module.exports = function(app, db) {
     });
 
 
-    app.delete(`/api/garments`, async function(req, res) {
+    // app.delete(`/api/garments`, async function(req, res) {
 
-        try {
-            const { gender } = req.query;
-            // delete the garments with the specified gender
+    //     try {
+    //         const { gender } = req.query;
+    //         // delete the garments with the specified gender
 
 
-            res.json({
-                status: 'success'
-            })
-        } catch (err) {
-            // console.log(err);
-            res.json({
-                status: 'success',
-                error: err.stack
-            })
-        }
-    });
+    //         res.json({
+    //             status: 'success'
+    //         })
+    //     } catch (err) {
+    //         // console.log(err);
+    //         res.json({
+    //             status: 'success',
+    //             error: err.stack
+    //         })
+    //     }
+    // });
 
 
 }
