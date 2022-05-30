@@ -6,7 +6,7 @@ module.exports = function(app, db) {
         });
     });
 
-    app.get('api/garments/price/:price', async function(req, res) {
+    app.get('/api/garments/price/:price', async function(req, res) {
         try {
             const { price } = req.params;
             let garments = await db.many(`select * from garment where price <= $1`, [price]);
@@ -18,7 +18,7 @@ module.exports = function(app, db) {
             console.log(error);
         }
     })
-    app.get(`api/garments`, async function(req, res) {
+    app.get(`/api/garments`, async function(req, res) {
 
         const { gender, season } = req.query;
         let garments = [];
@@ -38,7 +38,7 @@ module.exports = function(app, db) {
         })
     });
 
-    app.put(`api/garment/:id`, async function(req, res) {
+    app.put(`/api/garment/:id`, async function(req, res) {
 
         try {
 
@@ -72,7 +72,7 @@ module.exports = function(app, db) {
         }
     });
 
-    app.get(`api/garment/:id`, async function(req, res) {
+    app.get(`/api/garment/:id`, async function(req, res) {
 
         try {
             const { id } = req.params;
@@ -96,7 +96,7 @@ module.exports = function(app, db) {
     });
 
 
-    app.post(`api/garment/`, async function(req, res) {
+    app.post(`/api/garment/`, async function(req, res) {
 
         try {
 
@@ -124,7 +124,7 @@ module.exports = function(app, db) {
         }
     });
 
-    app.get(`api/garments/grouped`, async function(req, res) {
+    app.get(`/api/garments/grouped`, async function(req, res) {
         let result = []
             // use group by query with order by asc on count(*)
 
@@ -137,7 +137,7 @@ module.exports = function(app, db) {
     });
 
 
-    app.delete(`api/garments`, async function(req, res) {
+    app.delete(`/api/garments`, async function(req, res) {
 
         try {
             const { gender } = req.query;
