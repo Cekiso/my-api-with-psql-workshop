@@ -6,7 +6,7 @@ module.exports = function(app, db) {
         });
     });
 
-    app.get(`/api/garments/price/:price`, async function(req, res) {
+    app.get(`api/garments/price/:price`, async function(req, res) {
         try {
             const { price } = req.params;
             let garments = await db.many(`select * from garment where price <= $1`, [price]);
@@ -18,7 +18,7 @@ module.exports = function(app, db) {
             console.log(error);
         }
     })
-    app.get(`/api/garments`, async function(req, res) {
+    app.get(`api/garments`, async function(req, res) {
 
         const { gender, season } = req.query;
         let garments = [];
