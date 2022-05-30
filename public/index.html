@@ -119,7 +119,7 @@
 
 
                 <h2>Add garment</h2>
-                <img src="/images/img" alt="">
+                <!-- <img src="/images/img" alt=""> -->
 
                 <form action="/garment/" method="post" class="addGarmentForm" x-show="addGarment" @change="addClothing" x-model="addGarment" class="add garment hidden">
 
@@ -167,7 +167,7 @@
                         
                             <div class="garment">
 
-                                <img x-bind:src="`/images/${garment.img}`">
+                                <img :src="`images/${garment.img}`">
                                     <p x-text="garment.description"></p>
                                 <p>R<span x-text="garment.price"></span></p>
 
@@ -186,7 +186,7 @@
     </div>
 
 
-    <script src="/missytee.js"></script>
+    <script src="missytee.js"></script>
 </body>
 
 </html>
