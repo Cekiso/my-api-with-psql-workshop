@@ -24,7 +24,7 @@ document.addEventListener('alpine:init', () => {
         filterData() {
             try {
                 // console.log(this.genderFilter, this.seasonFilter);
-                fetch(`/api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
+                fetch(`api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
