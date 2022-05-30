@@ -113,9 +113,8 @@
             </div>
 
             <div class="addGarment">
-
                 <div class="add button mt1 hidden">
-                    <a x-bind="trigger" x-on:click="addGarment = ! addGarment" @change="addClothing" x-model="addGarment" href="/garment/">Add garmet</a>
+                    <a x-on:click="addGarment = !addGarment" @change="addClothing" x-model="addGarment" href="">Add garmet</a>
                 </div>
 
 
@@ -168,7 +167,7 @@
                         
                             <div class="garment">
 
-                                <img :src="`./images/${garment.img}`">
+                                <img x-bind:src="`./images/${garment.img}`">
                                     <p x-text="garment.description"></p>
                                 <p>R<span x-text="garment.price"></span></p>
 

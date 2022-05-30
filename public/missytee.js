@@ -55,19 +55,20 @@ document.addEventListener('alpine:init', () => {
 
             }
         },
-        trigger: {
-            ['x-ref']: 'trigger',
-            ['@click']() {
-                this.open = true
-            },
-        },
-        addGarments: {
-            ['x-show']() {
-                return this.open
-            },
-            ['@click.outside']() {
-                this.open = false
-            },
-        }
+        // trigger: {
+        //     ['x-ref']: 'trigger',
+        //     ['@click']() {
+        //         this.open = true
+        //     },
+        // },
+        // addGarments: {
+        //     ['x-show']() {
+        //         return this.open
+        //     },
+        //     ['@click.outside']() {
+        //         this.open = false
+        //     },
+        // }
     }))
+
 })

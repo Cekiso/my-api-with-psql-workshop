@@ -91,3 +91,5 @@ When you run the test using `npm test` the unit test will populate the `garment`
 
 Travis Test
 [![Build Status](https://app.travis-ci.com/Cekiso/my-api-with-psql-workshop.svg?branch=master)](https://app.travis-ci.com/Cekiso/my-api-with-psql-workshop)
+
+psql --host=ec2-54-211-255-161.compute-1.amazonaws.com --port=5432 --username=olgehpvefxhkow --password --dbname=dddgspsbpq5s0b

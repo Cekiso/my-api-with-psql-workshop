@@ -14,7 +14,7 @@ const DATABASE_URL = process.env.DATABASE_URL || 'postgres://nkully:nkully@local
 const pgp = PgPromise({});
 const db = pgp(DATABASE_URL);
 API(app, db);
-const PORT = process.env.PORT || 5995;
+const PORT = process.env.PORT || 5994;
 // API routes to be added here
 app.get('/', async function(req, res) {
     console.log(req.query)
