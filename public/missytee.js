@@ -14,7 +14,7 @@ document.addEventListener('alpine:init', () => {
 
         garments() {
             try {
-                fetch(`api/garments`)
+                fetch(`/api/garments`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
@@ -24,7 +24,7 @@ document.addEventListener('alpine:init', () => {
         filterData() {
             try {
                 // console.log(this.genderFilter, this.seasonFilter);
-                fetch(`api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
+                fetch(`/api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
@@ -36,7 +36,7 @@ document.addEventListener('alpine:init', () => {
         filterRange() {
             try {
                 // console.log(this.price);
-                fetch(`api/garments/price/${this.maxPrice}`)
+                fetch(`/api/garments/price/${this.maxPrice}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
@@ -46,7 +46,7 @@ document.addEventListener('alpine:init', () => {
         addClothing() {
             try {
                 console.log(this.addGarment);
-                fetch(`api/garment/${this.addGarment}`)
+                fetch(`/api/garment/${this.addGarment}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
 
