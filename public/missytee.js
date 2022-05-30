@@ -10,7 +10,7 @@ document.addEventListener('alpine:init', () => {
         genderFilter: '',
         seasonFilter: '',
         maxPrice: 0.00,
-        addGarment: '',
+        addGarment: [],
 
         garments() {
             try {
@@ -23,7 +23,7 @@ document.addEventListener('alpine:init', () => {
         },
         filterData() {
             try {
-                console.log(this.genderFilter, this.seasonFilter);
+                // console.log(this.genderFilter, this.seasonFilter);
                 fetch(`api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
@@ -45,8 +45,8 @@ document.addEventListener('alpine:init', () => {
         },
         addClothing() {
             try {
-                console.log();
-                fetch(`api/garments/${this.addGarment}`)
+                console.log(this.addGarment);
+                fetch(`api/garment/${this.addGarment}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
 
@@ -55,19 +55,19 @@ document.addEventListener('alpine:init', () => {
 
             }
         },
-        // trigger: {
-        //     ['x-ref']: 'trigger',
-        //     ['@click']() {
-        //         this.open = true
-        //     },
-        // },
-        // addGarments: {
-        //     ['x-show']() {
-        //         return this.open
-        //     },
-        //     ['@click.outside']() {
-        //         this.open = false
-        //     },
-        // }
+        trigger: {
+            ['x-ref']: 'trigger',
+            ['@click']() {
+                this.open = true
+            },
+        },
+        addGarments: {
+            ['x-show']() {
+                return this.open
+            },
+            ['@click.outside']() {
+                this.open = false
+            },
+        }
     }))
 })
