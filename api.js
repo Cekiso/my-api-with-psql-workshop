@@ -9,7 +9,7 @@ module.exports = function(app, db) {
     app.get('/api/garments/price/:price', async function(req, res) {
         try {
             const { price } = req.params;
-            let garments = await db.many(`select * from garment where price <= $1`, [price]);
+            let garments = await db.manyOrNone(`select * from garment where price <= $1`, [price]);
             console.log(garments.length);
             res.json({
                 data: garments
@@ -24,13 +24,13 @@ module.exports = function(app, db) {
         let garments = [];
         // add some sql queries that filter on gender & season
         if (!gender && !season) {
-            garments = await db.many(`select * from garment`)
+            garments = await db.manyOrNone(`select * from garment`)
         } else if (gender && season) {
-            garments = await db.many(`select * from garment where gender=$1 and season=$2`, [gender, season])
+            garments = await db.manyOrNone(`select * from garment where gender=$1 and season=$2`, [gender, season])
         } else if (season) {
-            garments = await db.many(`select * from garment where season=$1`, [season])
+            garments = await db.manyOrNone(`select * from garment where season=$1`, [season])
         } else if (gender) {
-            garments = await db.many(`select * from garment where gender=$1`, [gender])
+            garments = await db.manyOrNone(`select * from garment where gender=$1`, [gender])
         }
 
         res.json({
