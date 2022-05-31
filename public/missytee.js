@@ -14,7 +14,7 @@ document.addEventListener('alpine:init', () => {
 
         garments() {
             try {
-                fetch('https://my-api-with-psql-workshop.com/api/garments')
+                fetch('https://my-api-with-psql-workshop.herokuapp.com/api/garments')
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
@@ -24,7 +24,7 @@ document.addEventListener('alpine:init', () => {
         filterData() {
             try {
                 // console.log(this.genderFilter, this.seasonFilter);
-                fetch(`https://my-api-with-psql-workshop.com/api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
+                fetch(`/api/garments?gender=${this.genderFilter}&season=${this.seasonFilter}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
