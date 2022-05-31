@@ -53,6 +53,7 @@
     <div x-data="clothing">
 
         <div class="container">
+
             <h1>Missy Tee - clothing store</h1>
             <!-- snackbar -->
             <!-- <div>
@@ -64,7 +65,9 @@
             </div> -->
             <div class="add button mt1">
 
-                <a href="" onclick="myFunction">Add garmet</a>
+                <!-- <a x-on:click="addGarment = !addGarment" @change="addClothing" x-model="addGarment">Add garmet</a> -->
+                <button x-on:click="addGarment = !addGarment">Add garmet</button>
+                <!-- <a href="" x-on:click="addGarment = !addGarment" @change="addClothing" x-model="addGarment" onclick="myFunction">Add garmet</a> -->
 
             </div>
 
@@ -72,6 +75,7 @@
             <div class="filter">
                 <h2>Filter</h2>
                 <div class="genders">
+
                     <label>
                         <input type="radio" x-model="genderFilter" @change="filterData()"  name="gender" value=""> All
                     </label>
@@ -114,46 +118,60 @@
             </div>
 
             <div class="addGarment">
-                <div class="add button mt1 hidden">
-                    <a x-on:click="addGarment = !addGarment" @change="addClothing" x-model="addGarment" href="">Add garmet</a>
-                </div>
+
+                <!-- <div class="add button mt1 hidden">
+                    <button x-on:click="addGarment = !addGarment" @change="addClothing" x-model="addGarment">Add garmet</button>
+                    <a href="">Add garmet</a>
+                </div> -->
 
 
-                <h2>Add garment</h2>
+                <!-- <h2>Add garment</h2> -->
                 <!-- <img src="/images/img" alt=""> -->
 
-                <form action="/garment/" method="post" class="addGarmentForm" x-show="addGarment" @change="addClothing" x-model="addGarment" class="add garment hidden">
-
-                    <div class="field">
-                        <label for="">Description</label>
-                        <input type="text" name="description" class="description ">
-                    </div>
-                    <div class="field ">
-                        <label for=" ">Image</label>
-                        <input type="text " name="img " class="img ">
-                    </div>
-                    <div class="field ">
-                        <label for=" ">Price</label>
-                        <input type="number " name="price " step="0.01 " class="price ">
-                    </div>
-                    <div class="field ">
-                        <label for=" ">Gender</label>
+                <form action="/garment/" method="post" class="addGarmentForm" x-show="addGarment">
+                    <div class="garment">
                         <div>
-                            <input type="text " name="gender" class="gender">
+                            <h3>Choose from the given links</h3>
+                            <p>Blue Bomber: mens-128x128-455133.png</p>
+                            <p>carf: scarf-128x128-455138.png</p>
+                            <p>Short Skirt: skirt-128x128-455130.png</p>
+                            <p>Golf t-shirt: collared-128x128-455119.png</p>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label for="">Season</label>
-                        <div>
-                            <input type="text " name="season" class="season">
+                        <h2>Add garment</h2>
+                        <div class="field">
+                            <label for="">Description</label>
+                            <input type="text" name="description" class="description " x-text="addDescription">
                         </div>
-                    </div>
-                    <div class="mt1 ">
-                        <input @click="" type="button" name="action" value="Add" class="addGarmentBtn ">
-                        <input @click="" type="button" name="action" value="Hide" class="hideAddGarmetBtn ">
-                    </div>
+                        <div class="field">
+                            <label for=" ">Image</label>
+                            <input type="text " name="img " class="img" x-text="addimg">
+                        </div>
+                        <div class="field ">
+                            <label for=" ">Price</label>
+                            <input type="number " name="price " step="0.01 " class="price" x-text="addPrice">
+                        </div>
+                        <div class="field ">
+                            <label for=" ">Gender</label>
+                            <div>
+                                <input type="text " name="gender" class="gender" x-text="addGender">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="">Season</label>
+                            <div>
+                                <input type="text " name="season" class="season" x-text="addSeason">
+                            </div>
+                        </div>
+                        <div class="mt1">
+                            <input @click="garments" type="button" name="action" value="Add" class="addGarmentBtn">
+                            <input x-on:click="addGarment = !addGarment" type="button" name="action" value="Hide" class="hideAddGarmetBtn">
+                        </div>
                 </form>
+
+                </div>
+
             </div>
+
 
             <div>
                 <h2>Garments</h2>

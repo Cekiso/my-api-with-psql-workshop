@@ -4,13 +4,20 @@ document.addEventListener('alpine:init', () => {
             this.filterData(),
                 this.garments(),
                 this.filterRange(),
-                this.addClothing()
+                this.garment()
         },
         garments: [],
+        garment: [],
         genderFilter: '',
         seasonFilter: '',
         maxPrice: 0.00,
-        addGarment: [],
+        addGarment: false,
+        addDescription: '',
+        addimg: '',
+        addPrice: 0.00,
+        addGender: '',
+        addSeason: '',
+
 
         garments() {
             try {
@@ -43,10 +50,10 @@ document.addEventListener('alpine:init', () => {
 
             }
         },
-        addClothing() {
+        garment() {
             try {
-                console.log(this.addGarment);
-                fetch(`/api/garment/${this.addGarment}`)
+                console.log(this.addDescription);
+                fetch(`/api/garment/Description=${this.addDescription}&img=${this.addimg}&price=${this.addPrice}&gender=${this.addGender}&season=${this.addSeason}`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
 
@@ -55,20 +62,7 @@ document.addEventListener('alpine:init', () => {
 
             }
         },
-        // trigger: {
-        //     ['x-ref']: 'trigger',
-        //     ['@click']() {
-        //         this.open = true
-        //     },
-        // },
-        // addGarments: {
-        //     ['x-show']() {
-        //         return this.open
-        //     },
-        //     ['@click.outside']() {
-        //         this.open = false
-        //     },
-        // }
+
     }))
 
 })
