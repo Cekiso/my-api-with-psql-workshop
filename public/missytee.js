@@ -14,7 +14,7 @@ document.addEventListener('alpine:init', () => {
 
         garments() {
             try {
-                fetch(`api/garments`)
+                fetch(`/api/garments`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
             } catch (error) {
