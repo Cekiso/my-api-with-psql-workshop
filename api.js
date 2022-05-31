@@ -18,7 +18,7 @@ module.exports = function(app, db) {
             console.log(error);
         }
     })
-    app.post(`/api/garments`, async function(req, res) {
+    app.get(`/api/garments`, async function(req, res) {
 
         const { gender, season } = req.query;
         let garments = [];
