@@ -96,23 +96,23 @@ module.exports = function(app, db) {
     });
 
 
-    app.post(`/api/garment/`, async function(req, res) {
+    app.post(`/api/garment`, async function(req, res) {
 
         try {
 
             const { description, price, img, season, gender } = req.body;
 
             // insert a new garment in the database
-            let garment = []
+            // let garment = []
             await db.none(`insert into garment(description, img, season, gender, price) values ($1, $2, $3, $4, $5)`, [description, img, season, gender, price]);
-            if (gender == 'Male') {
-                garment = await db.many(`select * from garment where gender=$1`, [gender])
-            } else if (gender == 'Female') {
-                garment = await db.many(`select * from garment where gender=$1`, [gender])
-            }
+            // if (gender == 'Male') {
+            //     garment = await db.many(`select * from garment where gender=$1`, [gender])
+            // } else if (gender == 'Female') {
+            //     garment = await db.many(`select * from garment where gender=$1`, [gender])
+            // }
             res.json({
                 status: 'success',
-                data: garment
+                // data: garment
             });
 
         } catch (err) {
@@ -137,15 +137,17 @@ module.exports = function(app, db) {
     });
 
 
-    app.delete(`/api/garments`, async function(req, res) {
+    app.delete(`/api/garments/:id`, async function(req, res) {
 
         try {
-            const { gender } = req.query;
+            const { id } = req.query;
             // delete the garments with the specified gender
-
+            // const garment = []
+            await db.oneOrNone(`delete from garment where id = $1`, [id])
 
             res.json({
-                status: 'success'
+                status: 'success',
+                // data: garment
             })
         } catch (err) {
             // console.log(err);

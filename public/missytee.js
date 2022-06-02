@@ -2,25 +2,30 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('clothing', () => ({
         init() {
             this.filterData(),
-                this.garments(),
+                this.garmentsDisplay(),
                 this.filterRange(),
-                this.garment()
+                this.deleteGaments(),
+                this.garmentsSnackbar()
+                // this.addGarmentData()
         },
         garments: [],
-        garment: [],
         genderFilter: '',
         seasonFilter: '',
         maxPrice: 0.00,
         addGarment: false,
-        addDescription: '',
-        addimg: '',
-        addPrice: 0.00,
-        addGender: '',
-        addSeason: '',
+        // id: '',
+        addClothing: {
+            description: '',
+            img: '',
+            price: 0,
+            gender: '',
+            season: '',
+        },
 
 
-        garments() {
+        garmentsDisplay() {
             try {
+
                 fetch(`/api/garments`)
                     .then(r => r.json())
                     .then(garmentsData => this.garments = garmentsData.data)
@@ -50,18 +55,40 @@ document.addEventListener('alpine:init', () => {
 
             }
         },
-        garment() {
+        addGarmentData() {
             try {
-                console.log(this.addDescription);
-                fetch(`/api/garment/Description=${this.addDescription}&img=${this.addimg}&price=${this.addPrice}&gender=${this.addGender}&season=${this.addSeason}`)
-                    .then(r => r.json())
-                    .then(garmentsData => this.garments = garmentsData.data)
+                console.log(this.addClothing);
+                if (this.addClothing.description == "" || this.addClothing.img == "" || this.addClothing.price == 0 ||
+                    this.addClothing.gender == "" || this.addClothing.season == "") {
+                    alert('hello world')
 
+
+                } else {
+                    axios.post(`/api/garment`, this.addClothing)
+                        .then(() => this.garmentsDisplay())
+                        .then(console.log(addClothing))
+                }
 
             } catch (error) {
 
             }
         },
+        deleteGaments() {
+            try {
+                // console.log(this.id);
+                axios.delete(`/api/garments/:id`)
+                    .then(() => this.garmentsDisplay(this.id))
+                    // .then(console.log(this.addClothing))
+            } catch (error) {
+
+            }
+        },
+        garmentsSnackbar() {
+            fetch('/api/garments')
+                .then(r => r.json())
+                .then(garmentsData => this.garments = garmentsData.data),
+                console.log('checking garments' + JSON.stringify(this.addClothing.description))
+        }
 
     }))
 

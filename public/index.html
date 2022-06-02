@@ -18,6 +18,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <!-- <script class="garmentListTemplate" type="type/script-x">
@@ -56,13 +57,6 @@
 
             <h1>Missy Tee - clothing store</h1>
             <!-- snackbar -->
-            <!-- <div>
-                <h3>Choose from the given links</h3>
-                <p>Blue Bomber: mens-128x128-455133.png</p>
-                <p>carf: scarf-128x128-455138.png</p>
-                <p>Short Skirt: skirt-128x128-455130.png</p>
-                <p>Golf t-shirt: collared-128x128-455119.png</p>
-            </div> -->
             <div class="add button mt1">
 
                 <!-- <a x-on:click="addGarment = !addGarment" @change="addClothing" x-model="addGarment">Add garmet</a> -->
@@ -140,30 +134,30 @@
                         <h2>Add garment</h2>
                         <div class="field">
                             <label for="">Description</label>
-                            <input type="text" name="description" class="description " x-text="addDescription">
+                            <input type="text" name="description" class="description" x-model="addClothing.description">
                         </div>
                         <div class="field">
-                            <label for=" ">Image</label>
-                            <input type="text " name="img " class="img" x-text="addimg">
+                            <label for="">Image</label>
+                            <input type="text " name="img " class="img" x-model="addClothing.img">
                         </div>
-                        <div class="field ">
-                            <label for=" ">Price</label>
-                            <input type="number " name="price " step="0.01 " class="price" x-text="addPrice">
+                        <div class="field">
+                            <label for="">Price</label>
+                            <input type="number " name="price" step="0.01" value="0" class="price" x-model="addClothing.price">
                         </div>
-                        <div class="field ">
+                        <div class="field">
                             <label for=" ">Gender</label>
                             <div>
-                                <input type="text " name="gender" class="gender" x-text="addGender">
+                                <input type="text " name="gender" class="gender" x-model="addClothing.gender">
                             </div>
                         </div>
                         <div class="field">
                             <label for="">Season</label>
                             <div>
-                                <input type="text " name="season" class="season" x-text="addSeason">
+                                <input type="text" name="season" class="season" x-model="addClothing.season">
                             </div>
                         </div>
                         <div class="mt1">
-                            <input @click="garments" type="button" name="action" value="Add" class="addGarmentBtn">
+                            <input @click="addGarmentData()" type="button" name="action" value="Add" class="addGarmentBtn">
                             <input x-on:click="addGarment = !addGarment" type="button" name="action" value="Hide" class="hideAddGarmetBtn">
                         </div>
                 </form>
@@ -176,17 +170,22 @@
             <div>
                 <h2>Garments</h2>
                 <!-- <h2>Call API on page load</h2> -->
-                <div x-text="garments.length">
+                <div>
                     <strong>garments found</strong>
                 </div>
+
                 <div class="garments">
 
 
                     <template x-for="garment in garments">
                         
                             <div class="garment">
-
-                                <img :src="`images/${garment.img}`">
+                                <!-- <i class="fa-solid fa-trash-can-xmark"></i>
+                                <a href="#">
+                                    <img src="shopping-cart.png" alt="">
+                                </a> -->
+                                <button @click="deleteGaments()">delete</button>
+                                <img :src="`/images/${garment.img}`">
                                     <p x-text="garment.description"></p>
                                 <p>R<span x-text="garment.price"></span></p>
 
@@ -194,18 +193,15 @@
                         </template>
 
                 </div>
-
-
             </div>
+
+            <!-- <div id='snackbar'>
+
+            </div> -->
         </div>
 
-        <div id='snackbar'>
 
-        </div>
-    </div>
-
-
-    <script src="missytee.js"></script>
+        <script src="missytee.js"></script>
 </body>
 
 </html>
