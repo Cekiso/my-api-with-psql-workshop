@@ -73,11 +73,12 @@ document.addEventListener('alpine:init', () => {
 
             }
         },
-        deleteGaments() {
+        deleteGaments(element) {
+
             try {
                 // console.log(this.id);
-                axios.delete(`/api/garments/:id`)
-                    .then(() => this.garmentsDisplay(this.id))
+                axios.delete(`/api/garments/${element.id}`)
+                    .then(() => this.garmentsDisplay())
                     // .then(console.log(this.addClothing))
             } catch (error) {
 

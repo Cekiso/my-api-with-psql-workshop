@@ -140,14 +140,14 @@ module.exports = function(app, db) {
     app.delete(`/api/garments/:id`, async function(req, res) {
 
         try {
-            const { id } = req.query;
+            const { id } = req.params;
             // delete the garments with the specified gender
             // const garment = []
-            await db.oneOrNone(`delete from garment where id = $1`, [id])
+            const results = await db.oneOrNone(`delete from garment where id = $1`, [id])
 
             res.json({
                 status: 'success',
-                // data: garment
+                data: results
             })
         } catch (err) {
             // console.log(err);

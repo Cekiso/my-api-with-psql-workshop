@@ -184,7 +184,8 @@
                                 <a href="#">
                                     <img src="shopping-cart.png" alt="">
                                 </a> -->
-                                <button @click="deleteGaments()">delete</button>
+                                <button @click="deleteGaments(garment)"><img src="shopping-cart.png" alt="">delete</button>
+
                                 <img :src="`/images/${garment.img}`">
                                     <p x-text="garment.description"></p>
                                 <p>R<span x-text="garment.price"></span></p>
