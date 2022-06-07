@@ -64,7 +64,7 @@ document.addEventListener('alpine:init', () => {
                     // const duplicateItem = JSON.stringify(garments)
                     this.info_message = 'No garment added!'
                     this.error = true;
-                    alert('hello world')
+
 
 
                 } else {
