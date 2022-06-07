@@ -45,10 +45,26 @@ img {
     margin-top: 1em;
 }
 
+
+/* 
 .message {
     margin-top: 1em;
     padding: 1em;
     background-color: lightsalmon;
+} */
+
+.message {
+    background-color: green;
+    height: 2em;
+    width: 10em;
+    color: white;
+    margin-bottom: 1em;
+    text-align: center;
+    border-radius: 0.25em;
+}
+
+.error {
+    background-color: crimson;
 }
 
 #snackbar {

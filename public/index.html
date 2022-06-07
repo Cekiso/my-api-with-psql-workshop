@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
+
     <!-- <script class="garmentListTemplate" type="type/script-x">
         <div>
             {{garments.length}} <strong>garments found</strong>
@@ -126,15 +127,17 @@
                     <div class="garment">
                         <div>
                             <h3>Choose from the given links</h3>
-                            <p>Blue Bomber: mens-128x128-455133.png</p>
-                            <p>carf: scarf-128x128-455138.png</p>
-                            <p>Short Skirt: skirt-128x128-455130.png</p>
-                            <p>Golf t-shirt: collared-128x128-455119.png</p>
+                            <p>short: shorts-146.png</p>
+                            <p>blue jeans: bluejeans.png</p>
+                            <p>blue dress: dress-blue.png</p>
+                            <p>Hat: hat.png</p>
+                            <p>mini skirt: redmini.png</p>
                         </div>
                         <h2>Add garment</h2>
                         <div class="field">
                             <label for="">Description</label>
                             <input type="text" name="description" class="description" x-model="addClothing.description">
+                            <span x-text="description"></span>
                         </div>
                         <div class="field">
                             <label for="">Image</label>
@@ -157,15 +160,18 @@
                             </div>
                         </div>
                         <div class="mt1">
-                            <input @click="addGarmentData()" type="button" name="action" value="Add" class="addGarmentBtn">
+                            <input @click="addGarmentData()" x-on:click="description = !description" type="button" name="action" value="Add" class="addGarmentBtn">
                             <input x-on:click="addGarment = !addGarment" type="button" name="action" value="Hide" class="hideAddGarmetBtn">
                         </div>
+                        <!-- <template x-for="">
+                            <p class="blank">fields need to be filled</p>
+                            </tamplate> -->
                 </form>
-
                 </div>
 
             </div>
 
+            <div class="message" x-bind:class="error ? 'error' : ''" x-text="info_message" x-show="info_message != ''" x-transition></div>
 
             <div>
                 <h2>Garments</h2>
@@ -184,8 +190,7 @@
                                 <a href="#">
                                     <img src="shopping-cart.png" alt="">
                                 </a> -->
-                                <button @click="deleteGaments(garment)"><img src="shopping-cart.png" alt="">delete</button>
-
+                                <i class="fa fa-trash-o" style="font-size:36px" @click="deleteGaments(garment)" ></i>
                                 <img :src="`/images/${garment.img}`">
                                     <p x-text="garment.description"></p>
                                 <p>R<span x-text="garment.price"></span></p>

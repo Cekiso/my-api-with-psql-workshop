@@ -13,7 +13,8 @@ document.addEventListener('alpine:init', () => {
         seasonFilter: '',
         maxPrice: 0.00,
         addGarment: false,
-        // id: '',
+        info_message: '',
+        error: false,
         addClothing: {
             description: '',
             img: '',
@@ -60,6 +61,9 @@ document.addEventListener('alpine:init', () => {
                 console.log(this.addClothing);
                 if (this.addClothing.description == "" || this.addClothing.img == "" || this.addClothing.price == 0 ||
                     this.addClothing.gender == "" || this.addClothing.season == "") {
+                    // const duplicateItem = JSON.stringify(garments)
+                    this.info_message = 'No garment added!'
+                    this.error = true;
                     alert('hello world')
 
 
@@ -67,7 +71,13 @@ document.addEventListener('alpine:init', () => {
                     axios.post(`/api/garment`, this.addClothing)
                         .then(() => this.garmentsDisplay())
                         .then(console.log(addClothing))
+                    this.info_message = 'New garment added.'
+                    this.error = false;
                 }
+                setTimeout(() => {
+                    this.info_message = '';
+                    this.error = false;
+                }, 3000);
 
             } catch (error) {
 
